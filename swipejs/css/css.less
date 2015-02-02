@@ -1,0 +1,81 @@
+// reset && base
+body{
+	margin: 0;
+}
+ul,p{
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+img{
+	border: 0;
+}
+.cl{
+	clear: both;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.rel{
+	position: relative;
+}
+.ovh{
+	overflow: hidden;
+}
+body{
+	font-size: 100px;
+}
+.swipe {
+	overflow: hidden;
+	visibility: hidden;
+	position: relative;
+	//cus
+	height: 3.46em;
+	text-align: center;	
+	.swipe-wrap {
+		overflow: hidden;
+		position: relative;
+			> a {
+			float: left;
+			width: 100%;
+			position: relative;
+			// cus
+			height: 3.46em;
+			img{
+				height: 100%;
+			}				
+		}
+	}
+
+
+}
+#position{
+	position: absolute;
+	// width: 30%;
+	margin-left: 30%;
+	height: 0.5em;
+	bottom: 0;
+	ul{
+		// list-style: none;
+	}
+	li{
+		width: 0.3em;
+		height: 0.3em;
+		float: left;
+		background-color: #F6F6F6;
+		margin-right: 0.4em;
+		list-style: none;
+		&.on{
+			background-color: #76161B;
+		}
+		&#lastli{
+			margin-right: 0;
+		}
+	}
+}
+
