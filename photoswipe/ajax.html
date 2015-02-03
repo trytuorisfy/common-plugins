@@ -1,0 +1,51 @@
+<!DOCTYPE html><html>
+<head>
+	<title>PhotoSwipe</title>
+	<meta name="author" content="Code Computerlove - http://www.codecomputerlove.com/" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<link href="css/styles.css" type="text/css" rel="stylesheet" />
+	
+	<link href="css/photoswipe.css" type="text/css" rel="stylesheet" />
+	<script src="js/zepto.min.js"></script>
+	<script src="js/template.js"></script>
+	
+	<script src="js/simple-inheritance.min.js"></script>
+	<script src="js/code-photoswipe-1.0.11.min.js"></script>	
+</head>
+<body>
+    <div id="Gallery">
+    	<div class="gallery-row" id="gallery-row">
+    		
+    	</div>
+    </div>   
+    <script id="pic-tpl" type="text/html">
+        {{if error == 0}}
+            {{each list as value i}}    
+				<div class="gallery-item">
+					<a href="{{value.fullurl}}">
+						<img src="{{value.thumburl}}"  />
+					</a>
+				</div>
+            {{/each}}
+        {{/if}}
+    </script>
+
+    <script type="text/javascript">
+      $(function(){
+        $.getJSON('datas.json', function(data)
+            {
+                var html = template('pic-tpl', {
+                    error:data.error,
+                    list: data.data.list//直接定位到要的那部分！
+                });
+                $('#gallery-row').html(html);
+
+                //幻灯插件走起
+                Code.photoSwipe('a', '#Gallery');
+            }
+        );
+      });
+    </script>
+
+</body>
+</html>
