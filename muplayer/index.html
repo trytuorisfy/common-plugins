@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <title>playlist</title>
+    <link rel="stylesheet" href="css/player.css">
+    <style> 
+        .time{
+            position: absolute;
+            display: block;
+            height: 20px;
+            bottom: 0;
+            right: 62px;
+            font-size: 12px;
+            color: #fff;
+        }  
+    </style>  
+</head>
+<body>
+    <div id="player-demo">
+        <div class="player-widget">
+            <div class="opts">
+                <span class="prev">
+                    <i class="iconfont i-step-backward"></i>
+                </span>
+                <span class="ctrl" id="ctrl">
+                    <i class="iconfont i-play"></i>
+                </span>
+                <span class="next">
+                    <i class="iconfont i-step-forward"></i>
+                </span>
+                <span class="mode">
+                    <i class="iconfont i-repeat"></i>
+                </span>
+            </div>
+            <div class="volume">
+                <i class="iconfont i-volume-down"></i>
+                <span class="bar"></span>
+            </div>
+            <a class="avatar" href="javascript:;">
+                <img alt="" src="img/default.jpg">
+            </a>
+            <div class="progress-bar"></div>
+            <span class="time"></span>
+        </div>
+    </div>
+    <ul id="playlist-demo">
+        <li data-link="mp3/rain.mp3" class='active'>雨声(mp3)</li>
+        <li data-link="mp3/walking.mp3">脚步声(mp3)</li>
+    </ul>     
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.ui.slider.js"></script>
+    <script src="dist/player.js"></script>
+    <script>
+        var $player = $('.player-widget'),
+            $opts = $player.find('.opts'),
+            $ctrlBtn = $opts.find('#ctrl'),
+            $ctrlIcon = $ctrlBtn.find('i'),
+            $prevBtn = $opts.find('.prev'),
+            $nextBtn = $opts.find('.next'),
+            $modeBtn = $opts.find('.mode'),
+            $modeIcon = $modeBtn.find('i'),
+            $volume = $player.find('.volume'),
+            $progress = $player.find('.progress-bar'),
+            $avatar = $player.find('.avatar'),
+            $time = $('.time'),
+            // listpart
+            $pl = $('#playlist-demo'),           
+            current_mp3 = '';            
+            $i = 0,//页面打开时给个默认的播放的歌曲        
+            player = new _mu.Player({
+                    // mode: 'list',
+                    baseDir: 'dist'                   
+                }),
+            // 监听播放时派发的timeupdate事件以更新播放进度条等相关UI
+            handleTimeupdate = function() {
+                var pos = player.curPos(),
+                    duration = player.duration();
+                $progress.slider('option', 'value', duration ? pos / duration * 1000 : 0);
+                $time.text(player.curPos(true) + ' / ' + player.duration(true));
+            },
+            findCurrItem = function() {
+                var link = player.getCur();
+                link = link.substring(link.indexOf('mp3/'));
+                return $pl.find('[data-link="' + link + '"]');
+            };
+
+            //将mp3地址放进一个数组中，再出入播放列表
+            var mp3_url = [];
+            for (var i = 0; i < $pl.find('li').length; i++) {
+                mp3_url.push($pl.find('li').eq(i).attr('data-link'));
+            };
+            player.add(mp3_url);
+
+            // player.add([
+            //     'mp3/rain.mp3',
+            //     'mp3/walking.mp3'
+            // ]);            
+        // 在各个按钮上监听点击事件，触发时改变按钮的对应样式，并执行player的相应方法
+        $ctrlBtn.on('click',function() {
+
+
+            if ($ctrlIcon.hasClass('i-play')) {
+                if($i == 0){
+                    var first_mp3 = $pl.find('li').eq(0).attr('data-link');
+                    $ctrlIcon.removeClass('i-play').addClass('i-pause'); 
+                    player.setCur(first_mp3).play();         
+                }else{
+                    $ctrlIcon.removeClass('i-play').addClass('i-pause');             
+                    player.play();                    
+                }
+            } else if ($ctrlIcon.hasClass('i-pause')) {
+                $ctrlIcon.removeClass('i-pause').addClass('i-play');
+                player.pause();
+            }
+            $i++;
+            // console.log($i);
+        });
+
+        $prevBtn.click(function() {
+            player.prev();
+        });
+
+        $nextBtn.click(function() {
+            player.next();
+        });
+
+        var modes = ['loop', 'random', 'single'],
+            modeIndex = 0;
+        $modeBtn.click(function() {
+            var mode = modes[++modeIndex % 3];
+            // console.log(mode);
+            player.setMode(mode);
+            if (mode === 'loop') {
+                $modeIcon.removeClass().addClass('iconfont i-refresh');
+            } else if(mode === 'random'){
+                $modeIcon.removeClass().addClass('iconfont i-random');
+            } else{
+                $modeIcon.removeClass().addClass('iconfont i-one-repeat');
+            }
+        });
+
+        $volume.find('i').click(function() {
+            var $this = $(this),
+                isMute = player.getMute();
+
+            if (isMute) {
+                $this.removeClass('i-volume-off')
+                    .addClass('i-volume-down').parent().removeClass('mute');
+                player.setMute(false);
+            } else {
+                $this.removeClass('i-volume-down')
+                    .addClass('i-volume-off').parent().addClass('mute');
+                player.setMute(true);
+            }
+        });
+
+        $volume.find('.bar').slider({
+            value: player.getVolume(),
+            range: 'min',
+            slide: function(e, ui) {
+                player.setVolume(ui.value);
+            },
+            stop: function(e, ui) {
+                $(ui.handle).blur();
+            }
+        });
+
+        // 通过jquery-ui的slider组件实现播放进度条的交互
+        $progress.slider({
+            range: 'min',
+            max: 1000,
+            disabled: false,
+            start: function() {
+                // 为了使拖动操作不受打断，进度条拖动操作开始时即暂停对timeupdate事件的监听
+                player.off('timeupdate');
+            },
+            stop: function(e, ui) {
+                // 拖动结束时再恢复对timeupdate事件的监听
+                player.on('timeupdate', handleTimeupdate).play(ui.value * player.duration());
+                $(ui.handle).blur();
+            }
+        });
+
+        // 事件驱动的UI：即UI应监听player派发的事件，以决定是否切换到对应的状态
+        player.on('player:play', function() {
+            $progress.slider('enable');
+            $ctrlIcon.removeClass('i-play').addClass('i-pause');
+            findCurrItem().addClass('active').siblings('li').removeClass('active');
+        }).on('player:pause', function() {
+            if($i == 0){
+                // console.log('pause');
+            }else{
+                $progress.slider('disable');
+                $ctrlIcon.removeClass('i-pause').addClass('i-play');                
+            }
+
+
+            
+        }).on('player:stop', function() {
+            $progress.slider('disable');
+            // $ctrlIcon.removeClass('i-pause').addClass('i-play');
+            // console.log('stop');            
+        }).on('timeupdate', handleTimeupdate).on('player:fetchend', function(r) {
+            var info = r.songinfo;
+            if (info) {
+                var title = info.title + ' - ' + info.author;
+                $avatar.attr({
+                    title: title
+                }).find('img').attr({
+                    alt: title,
+                    src: info.pic_small
+                });
+            }
+        }); 
+
+
+
+        $pl.find('> li').on('click',function(){
+            current_mp3 = $(this).attr('data-link');
+            player.setCur(current_mp3).play();
+        })
+    </script> 
+</body>
+</html>
