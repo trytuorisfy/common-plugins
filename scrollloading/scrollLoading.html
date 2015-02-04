@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片加载</title>
+	<style>
+	.zxx_main_con {
+		height: 600px;
+		overflow: auto;
+	}
+	</style>	
+</head>
+<body>
+    <div id="zxxMainCon" class="zxx_main_con">
+		<script>
+			var tempHTML = "";
+			for (var i=1; i<=5; i+=1) {
+				tempHTML += '<div class="zxx_test_list tc"><img class="scrollLoading" data-url="http://trytuorisfy.github.io/common-plugins/images/'+i+'.jpg" src="images/pixel.gif" style="background:url(images/loading.gif) no-repeat center;" /></div>';
+			}
+			document.getElementById("zxxMainCon").innerHTML = tempHTML;
+		</script>
+    </div>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollLoading.js"></script>
+	<script>
+	$(function() {
+		$(".scrollLoading").scrollLoading({
+			// container: $(window)
+			container: $("#zxxMainCon"),
+			callback: function() {
+				this.style.border = "3px solid #a0b3d6";	
+			}
+		});	
+	});
+	</script>	
+</body>
+</html>
+
