@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>animation.css</title>
+	<link rel="stylesheet" href="animate.min.css">
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+</head>
+<body>
+	<h1>css3 动画效果走起</h1>
+	<p><a href="http://daneden.github.io/animate.css/">官网</a></p>
+	<!-- <h2 class="animated infinite  bounce">Example</h2> -->
+	<h2 class="animated  bounce ">Example</h2>
+	<h3 id='jqdemo'>jquery example</h3>
+	<h2>打包简述</h2>
+	<p>进入文件夹后 npm install</p>
+	<p>运行 grunt watch</p>
+	<p>修改animate-config.json,将需要的变成true，不需要的变成false</p>
+	<p>这时！ 就会自动生成 animate.css animate.min.css </p>
+
+	<script>
+		$('#jqdemo').addClass('animated bounceOutLeft');
+		$('#jqdemo').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+			console.log('end')
+		});
+		$('h1').one('click',function(){
+			console.log('one');//.one()事件只执行一次
+		})
+	</script>
+
+</body>
+</html>

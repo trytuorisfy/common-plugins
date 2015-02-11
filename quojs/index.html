@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>quo.js</title>
+	<script src="quo.js"></script>
+</head>
+<body>
+	<h1>quo.js 触屏手势</h1>
+	<p><span>hello</span></p>
+	<p><span>world</span></p>
+	<script>
+		window.onload = function(){
+			// Find all <span> elements in <p> elements
+			// alert($$('span', 'p'));
+
+			//Subscribe to a tap event with a callback
+			$$('p').tap(function() {
+				alert('yyy')
+			    // affects "span" children/grandchildren
+			    $$('span', this).style('color', 'red');
+			});
+
+			// Chaining methods
+			$$('p > span').html('tapquo').style('color', 'blue');				
+		}
+
+	</script>
+</body>
+</html>

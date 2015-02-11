@@ -18,3 +18,4 @@ jquery就用百度的cdn了
 - hammer.js 触摸手势[hammer](http://trytuorisfy.github.io/common-plugins/hammer)
 - scrollloading 滚动加载[scrollloading](http://trytuorisfy.github.io/common-plugins/scrollloading)
 - slidesjs 滚动加载[slidesjs](http://trytuorisfy.github.io/common-plugins/slidesjs)
+- 三级联动 滚动加载[三级联动](http://trytuorisfy.github.io/common-plugins/liandong)
