@@ -19,3 +19,4 @@ jquery就用百度的cdn了
 - scrollloading 滚动加载[scrollloading](http://trytuorisfy.github.io/common-plugins/scrollloading)
 - slidesjs 滚动加载[slidesjs](http://trytuorisfy.github.io/common-plugins/slidesjs)
 - 三级联动 滚动加载[三级联动](http://trytuorisfy.github.io/common-plugins/liandong)
+- uploadify php上传图片插件[uploadify](http://trytuorisfy.github.io/common-plugins/uploadify)

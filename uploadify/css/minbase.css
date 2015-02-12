@@ -1,0 +1,55 @@
+body{
+    font:12px/1.5 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    overflow: auto;
+}
+input,textarea,select{
+    font:12px/1.5 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,form{
+    margin:0;
+}
+ul,ol,li{
+    padding-left:0; 
+    list-style-type:none;
+}
+/*image with no-border*/
+img{border:0;}
+/*css重置部分结束*/
+
+/*公共样式部分开始*/
+/* display */
+.dn{display:none;}
+.di{display:inline;}
+.db{display:block;}
+.dib{display:inline-block;} 
+
+/* float */
+.fl{float:left;}
+.fr{float:right;}
+/* clear */
+.cl{clear:both;}
+/* position */
+.rel{position:relative;}
+.abs{position:absolute;}
+/* cursor */
+.cp{cursor:pointer;}
+/* overflow */
+.ovh{overflow:hidden;}
+.ova{overflow:auto;}
+
+
+/*块状元素居中*/
+.auto{margin: 0 auto;}
+
+.shadow{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 0.6;
+    filter: alpha(opacity=60);   
+}
