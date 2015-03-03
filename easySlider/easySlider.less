@@ -1,0 +1,45 @@
+ul{list-style:none;padding: 0;margin: 0;}
+img{border:0;}
+.wrapper{width:400px;margin:0 auto;}
+/* eSlider */
+
+//eSlider一些参数
+@eSliderWith:400px;
+@eSliderHeight:225px;
+@sNavBgHeight:20px;
+.eSlider{
+	width:@eSliderWith;height:@eSliderHeight;overflow:hidden;position:relative;
+	ul{
+		height:@eSliderHeight;position:absolute;
+		li{
+			float:left;width:@eSliderWith;height:@eSliderHeight;
+			a{
+				display: block;
+				img{
+					width: 100%;
+				}
+			}
+		}
+	}
+	.sNavBg{
+		position:absolute;width:@eSliderWith;height:@sNavBgHeight;left:0;bottom:0;background:#000;
+	}
+	.sNav{
+		position:absolute;width:380px;height:15px;padding:5px 10px;right:0;bottom:0;text-align:right;
+		span{
+			display:inline-block;_display:inline;_zoom:1;width:25px;height:10px;_font-size:0;margin-left:5px;cursor:pointer;background:#fff;
+			&.on{
+				background:#fff;
+			}
+		}
+	}
+	.preNext{
+		width:45px;height:100px;position:absolute;top:50%;background:url(sprite.png) no-repeat 0 0;cursor:pointer;margin-top: -50px;
+		&.pre{
+			left: 0;
+		}
+		&.next{
+			right:0;background-position:right top;
+		}
+	}
+}

@@ -17,6 +17,6 @@ jquery就用百度的cdn了
 - S Gallery 相册插件[相册插件](http://trytuorisfy.github.io/common-plugins/sgallery)
 - hammer.js 触摸手势[hammer](http://trytuorisfy.github.io/common-plugins/hammer)
 - scrollloading 滚动加载[scrollloading](http://trytuorisfy.github.io/common-plugins/scrollloading)
-- slidesjs 滚动加载[slidesjs](http://trytuorisfy.github.io/common-plugins/slidesjs)
+- slidesjs 幻灯片[slidesjs](http://trytuorisfy.github.io/common-plugins/slidesjs)
 - 三级联动 三级联动[三级联动](http://trytuorisfy.github.io/common-plugins/liandong)
 - uploadify php上传图片插件[uploadify](http://trytuorisfy.github.io/common-plugins/uploadify)

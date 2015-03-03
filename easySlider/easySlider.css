@@ -1,0 +1,120 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+img {
+  border: 0;
+}
+.wrapper {
+  width: 400px;
+  margin: 0 auto;
+}
+/* eSlider */
+.eSlider {
+  width: 400px;
+  height: 225px;
+  overflow: hidden;
+  position: relative;
+}
+.eSlider ul {
+  height: 225px;
+  position: absolute;
+}
+.eSlider ul li {
+  float: left;
+  width: 400px;
+  height: 225px;
+}
+.eSlider ul li a {
+  display: block;
+}
+.eSlider ul li a img {
+  width: 100%;
+}
+.eSlider .sNavBg {
+  position: absolute;
+  width: 400px;
+  height: 20px;
+  left: 0;
+  bottom: 0;
+  background: #000;
+}
+.eSlider .sNav {
+  position: absolute;
+  width: 380px;
+  height: 15px;
+  padding: 5px 10px;
+  right: 0;
+  bottom: 0;
+  text-align: right;
+}
+.eSlider .sNav span {
+  display: inline-block;
+  _display: inline;
+  _zoom: 1;
+  width: 25px;
+  height: 10px;
+  _font-size: 0;
+  margin-left: 5px;
+  cursor: pointer;
+  background: #fff;
+}
+.eSlider .sNav span.on {
+  background: #fff;
+}
+.eSlider .preNext {
+  width: 45px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  background: url(sprite.png) no-repeat 0 0;
+  cursor: pointer;
+  margin-top: -50px;
+}
+.eSlider .preNext.pre {
+  left: 0;
+}
+.eSlider .preNext.next {
+  right: 0;
+  background-position: right top;
+}
+.eFade {
+  /*显示数字*/
+  /*.tkBtn a{text-decoration:none; float: left;background-color:#eee; border-radius: 12px; padding:2px 8px; margin-right: 5px;}*/
+  /*不显示数字*/
+}
+.eFade .tkWrap {
+  height: 195px;
+  position: relative;
+}
+.eFade .tkBtn {
+  position: absolute;
+  bottom: 10px;
+  right: 244px;
+}
+.eFade .tkAD {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  float: left;
+}
+.eFade .tkBtn a {
+  text-indent: -9999em;
+  text-decoration: none;
+  float: left;
+  background-color: #eee;
+  border-radius: 12px;
+  padding: 2px 11px;
+  margin-right: 5px;
+}
+.eFade .tkBtn a:hover,
+.eFade .tkBtn a.current {
+  background-color: #fff;
+  color: red;
+}
+.eFade .tkAD li {
+  list-style: none;
+  position: absolute;
+}
+/*# sourceMappingURL=easySlider.css.map */
